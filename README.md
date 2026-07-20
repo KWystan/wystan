@@ -39,9 +39,14 @@ npm run dev
 ```
 
 - **Frontend:** http://localhost:3000
-- **Backend API:** http://localhost:5000/api/health
+- **Backend API:** http://localhost:5010/api/health
 
 The Vite dev server proxies `/api/*` requests to the Express backend automatically during development.
+
+Or run both simultaneously from the root:
+```powershell
+npm run dev      # starts client (:3000) + server (:5010) concurrently
+```
 
 ## Pages
 
@@ -60,10 +65,11 @@ The Vite dev server proxies `/api/*` requests to the Express backend automatical
 
 | Project | Command | Description |
 |---------|---------|-------------|
+| `root`   | `npm run dev` | Start both client + server concurrently |
 | `client` | `npm run dev` | Start Vite dev server on port 3000 (HMR) |
 | `client` | `npm run build` | Production build → `client/dist/` |
 | `client` | `npm run lint` | Run ESLint |
-| `server` | `npm run dev` | Start with `--watch` (auto-restart) on port 5000 |
+| `server` | `npm run dev` | Start with `--watch` (auto-restart) on port 5010 |
 | `server` | `npm start` | Production start |
 
 ## Stack

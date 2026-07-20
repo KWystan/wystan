@@ -11,17 +11,17 @@ This project is a plain two-directory monorepo — no workspace manager, no mono
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │  Browser                                                     │
-│    └─ http://localhost:3001                                  │
+│    └─ http://localhost:3000                                  │
 │       └─ Vite Dev Server (client/)                           │
 │          ├─ Serves React SPA with React Router               │
-│          └─ Proxies /api/* to :5001                          │
+│          └─ Proxies /api/* to :5010                          │
 │                                                              │
 └──────────────────────┬──────────────────────────────────────┘
                        │ /api/*
                        ▼
 ┌─────────────────────────────────────────────────────────────┐
 │  Express.js (server/)                                        │
-│    └─ http://localhost:5001                                  │
+│    └─ http://localhost:5010                                  │
 │       ├─ GET    /api/health     — health check               │
 │       ├─ POST   /api/chat       — AI chat (NVIDIA NIM)       │
 │       ├─ GET    /api/guestbook  — list guestbook entries     │
