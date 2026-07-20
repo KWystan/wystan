@@ -1,0 +1,53 @@
+# Claude Code: When starting a new session, read this file and update it to
+# reflect any new generated files, build artifacts, or dependencies that should
+# never be committed.
+
+## Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+## Build output
+dist/
+dist-ssr/
+build/
+*.tsbuildinfo
+
+## Environment & secrets
+.env
+.env.local
+.env.*.local
+*.pem
+
+## IDE & editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+## OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+## Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+## Testing
+coverage/
+.nyc_output/
+
+## Misc
+*.local
+.cache/
