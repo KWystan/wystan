@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { contact } from '../data/portfolioData';
 import useScrollReveal from '../hooks/useScrollReveal';
 
@@ -46,7 +46,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-8 lg:py-10">
+    <section className="py-8 md:py-10 border-t border-black/6 border-line-animate">
       <div className="max-w-5xl mx-auto px-6 border-l border-black/7 border-line-animate">
         <div style={{ animation: 'fade-up 0.3s var(--ease-out-expo) both' }}>
           <h1 className="font-display text-2xl font-semibold tracking-tight text-black leading-tight">
@@ -56,7 +56,7 @@ export default function Contact() {
         </div>
 
         <div ref={ref} className={`scroll-reveal ${visible ? 'revealed' : ''} mt-5 max-w-xl`}>
-          {/* � Quick subject chips ������ */}
+          {/* ï¿½ Quick subject chips ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */}
           <div className="flex flex-wrap gap-1.5 mb-4">
             {contact.subjects.map((s) => (
               <button key={s} onClick={() => setForm((prev) => ({ ...prev, subject: s }))}
@@ -71,7 +71,7 @@ export default function Contact() {
             ))}
           </div>
 
-          {/* � Form ������ */}
+          {/* ï¿½ Form ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */}
           <form onSubmit={handleSubmit} className="space-y-3">
             <div className="grid grid-cols-2 gap-3">
               <input type="text" value={form.name} onChange={handleChange('name')} placeholder="Your name" required

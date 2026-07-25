@@ -1,4 +1,4 @@
-import { hero, projects, certifications, stack, experience } from '../data/portfolioData';
+﻿import { hero, projects, certifications, stack, experience } from '../data/portfolioData';
 import { useTypewriter } from '../hooks/useTypewriter';
 import profilePic from '../assets/profile_picture.jpg';
 
@@ -40,93 +40,108 @@ export default function Hero() {
     { value: new Set(Object.values(stack).flat()).size, label: 'Technologies' },
   ];
   return (
-    <section className="pt-20 pb-2">
-      <div className="max-w-5xl mx-auto px-6 w-full border-l border-black/7 border-line-animate">        {/* ? Text at the very top ?????? */}
-        <div
-          className="flex flex-col gap-1 mb-10"
-          style={{ animation: `ade-up 0.3s var(--ease-out-expo) both` }}
-        >
-          <span className="font-display text-lg text-black/50 leading-none">
-            Hello, I'm
-          </span>
-          <h1 className="font-display text-[28px] font-semibold text-black leading-tight tracking-tight">
-            {hero.firstName} {hero.middleName} {hero.lastName}
-          </h1>
-          <p className="text-sm text-black/55 leading-snug min-h-[1.25em]">
-            <TypewriterText />
-          </p>
-          <p className="text-sm text-black/60 leading-relaxed max-w-2xl font-serif mt-3">
-            I'm a third-year BSIT student at West Visayas State University ? CICT, passionate about web development, networking, and building clean, functional interfaces. Welcome to my corner of the web.
-          </p>
-        </div>
-        {/* ? Photo + overlapping card ?????? */}
-        <div className="flex flex-col items-center">
-          {/* Photo ? centered, moved down */}
+    <section className="py-8 md:py-10 border-t border-black/6 border-line-animate">
+      <div className="max-w-5xl mx-auto px-6 w-full border-l border-black/7 border-line-animate">
+        {/* Row 1: Photo on left, text on right (same level) */}
+        <div className="flex flex-col md:flex-row md:gap-10 md:items-start">
+          {/* Photo on left */}
           <div
-            className="size-[160px] md:size-[200px] rounded-full border-2 border-black/12 overflow-hidden -mb-16 md:-mb-20 relative z-10"
-            style={{ animation: `ade-up 0.3s var(--ease-out-expo) both, float 4s var(--ease-in-out-expo) infinite` }}
+            className="flex-shrink-0 flex justify-center md:justify-start mb-6 md:mb-0"
+            style={{ animation: 'fade-up 0.3s var(--ease-out-expo) both' }}
           >
-            <img src={profilePic} alt={hero.firstName} className="w-full h-full object-cover" />
-          </div>
-          {/* Card ? overlaps bottom of photo */}
-          <div
-            className="relative z-20 w-full border border-black/10 rounded-xl bg-white p-5 md:p-6"
-            style={{ animation: `ade-up 0.35s var(--ease-out-expo) both` }}
-          >
-            {/* Social + Contact inline row */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4">
-              {hero.socials.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-[11px] text-black/50 hover:text-black/80 transition-colors duration-150 active:scale-[0.97]"
-                  aria-label={social.name}
-                >
-                  {socialIcons[social.name]}
-                  <span className="hidden sm:inline">{social.name}</span>
-                </a>
-              ))}
-              <span className="w-px h-4 bg-black/8 hidden sm:block" />
-              <a
-                href={`mailto:${hero.email}`}
-                className="flex items-center gap-1.5 text-[11px] text-black/50 hover:text-black/80 transition-colors duration-150 active:scale-[0.97]"
-              >
-                <span className="material-symbols-outlined text-[14px] text-black/45">mail</span>
-                {hero.email}
-              </a>
-              <span className="w-px h-4 bg-black/8 hidden sm:block" />
-              <span className="flex items-center gap-1.5 text-[11px] text-black/50">
-                <span className="material-symbols-outlined text-[14px] text-black/45">language</span>
-                {hero.website}
-              </span>
-              <span className="w-px h-4 bg-black/8 hidden sm:block" />
-              <span className="flex items-center gap-1.5 text-[11px] text-black/50">
-                <span className="material-symbols-outlined text-[14px] text-black/45">location_on</span>
-                {hero.location}
-              </span>
+            <div className="size-[160px] md:size-[200px] rounded-full border-2 border-black/12 overflow-hidden">
+              <img src={profilePic} alt={hero.firstName} className="w-full h-full object-cover" />
             </div>
-            {/* Divider inside card */}
-            <div className="border-t border-black/6 my-4 border-line-animate" />
-            {/* Stats grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="text-center md:text-left">
-                <p className="font-display text-2xl font-semibold text-black leading-tight">{stats[0].value}</p>
-                <p className="text-[10px] font-medium tracking-wider uppercase text-black/35 mt-1">Projects Built</p>
-              </div>
-              <div className="text-center md:text-left">
-                <p className="font-display text-2xl font-semibold text-black leading-tight">{stats[1].value}</p>
-                <p className="text-[10px] font-medium tracking-wider uppercase text-black/35 mt-1">Years Coding</p>
-              </div>
-              <div className="text-center md:text-left">
-                <p className="font-display text-2xl font-semibold text-black leading-tight">{stats[2].value}</p>
-                <p className="text-[10px] font-medium tracking-wider uppercase text-black/35 mt-1">Certifications</p>
-              </div>
-              <div className="text-center md:text-left">
-                <p className="font-display text-2xl font-semibold text-black leading-tight">{stats[3].value}</p>
-                <p className="text-[10px] font-medium tracking-wider uppercase text-black/35 mt-1">Technologies Used</p>
-              </div>
+          </div>
+
+          {/* Text + description on right, same level as photo */}
+          <div
+            className="flex-1 flex flex-col gap-1"
+            style={{ animation: 'fade-up 0.3s var(--ease-out-expo) both' }}
+          >
+            <span className="font-display text-lg text-black/50 leading-none">
+              Hello, I'm
+            </span>
+            <h1 className="font-display text-[28px] font-semibold text-black leading-tight tracking-tight">
+              {hero.firstName} {hero.middleName} {hero.lastName}
+            </h1>
+            <p className="text-sm text-black/55 leading-snug min-h-[1.25em]">
+              <TypewriterText />
+            </p>
+            <p className="text-sm text-black/60 leading-relaxed max-w-2xl font-serif mt-3">
+              I'm a third-year BSIT student at West Visayas State University — CICT, passionate about web development, networking, and building clean, functional interfaces. Welcome to my corner of the web.
+            </p>
+          </div>
+        </div>
+
+        {/* Row 2: Full-width info card at the bottom */}
+        <div
+          className="w-full border border-black/10 rounded-xl bg-white p-5 md:p-6 mt-8"
+          style={{ animation: 'fade-up 0.35s var(--ease-out-expo) both' }}
+        >
+          {/* Social + Contact inline row */}
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            {hero.socials.map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-[11px] text-black/50 hover:text-black/80 transition-colors duration-150 active:scale-[0.97]"
+                aria-label={social.name}
+              >
+                {socialIcons[social.name]}
+                <span className="hidden sm:inline">{social.name}</span>
+              </a>
+            ))}
+            <span className="w-px h-4 bg-black/8 hidden sm:block" />
+            <a
+              href={`mailto:${hero.email}`}
+              className="flex items-center gap-1.5 text-[11px] text-black/50 hover:text-black/80 transition-colors duration-150 active:scale-[0.97]"
+            >
+              <span className="material-symbols-outlined text-[14px] text-black/45">mail</span>
+              {hero.email}
+            </a>
+            <span className="w-px h-4 bg-black/8 hidden sm:block" />
+            <span className="flex items-center gap-1.5 text-[11px] text-black/50">
+              <span className="material-symbols-outlined text-[14px] text-black/45">language</span>
+              {hero.website}
+            </span>
+            <span className="w-px h-4 bg-black/8 hidden sm:block" />
+            <span className="flex items-center gap-1.5 text-[11px] text-black/50">
+              <span className="material-symbols-outlined text-[14px] text-black/45">location_on</span>
+              {hero.location}
+            </span>
+          </div>
+
+          {/* Divider inside card */}
+          <div className="border-t border-black/6 my-4 border-line-animate" />
+
+          {/* Stats grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="text-center">
+              <p className="font-display text-2xl font-semibold text-black leading-tight tracking-tight">
+                <span className="text-black">{'{'}</span> {stats[0].value} <span className="text-black">{'}'}</span>
+              </p>
+              <p className="text-[10px] font-medium tracking-wider uppercase text-black/35 mt-1">Projects Built</p>
+            </div>
+            <div className="text-center">
+              <p className="font-display text-2xl font-semibold text-black leading-tight tracking-tight">
+                <span className="text-black">{'{'}</span> {stats[1].value} <span className="text-black">{'}'}</span>
+              </p>
+              <p className="text-[10px] font-medium tracking-wider uppercase text-black/35 mt-1">Years Coding</p>
+            </div>
+            <div className="text-center">
+              <p className="font-display text-2xl font-semibold text-black leading-tight tracking-tight">
+                <span className="text-black">{'{'}</span> {stats[2].value} <span className="text-black">{'}'}</span>
+              </p>
+              <p className="text-[10px] font-medium tracking-wider uppercase text-black/35 mt-1">Certifications</p>
+            </div>
+            <div className="text-center">
+              <p className="font-display text-2xl font-semibold text-black leading-tight tracking-tight">
+                <span className="text-black">{'{'}</span> {stats[3].value} <span className="text-black">{'}'}</span>
+              </p>
+              <p className="text-[10px] font-medium tracking-wider uppercase text-black/35 mt-1">Technologies Used</p>
             </div>
           </div>
         </div>
@@ -134,4 +149,3 @@ export default function Hero() {
     </section>
   );
 }
-

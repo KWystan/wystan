@@ -1,4 +1,4 @@
-import { uses } from '../data/portfolioData';
+﻿import { uses } from '../data/portfolioData';
 import useScrollReveal from '../hooks/useScrollReveal';
 
 const categoryIcons = {
@@ -12,7 +12,7 @@ export default function Uses() {
   const [ref, visible] = useScrollReveal();
 
   return (
-    <section className="py-8 lg:py-10">
+    <section className="py-8 md:py-10 border-t border-black/6 border-line-animate">
       <div className="max-w-5xl mx-auto px-6 border-l border-black/7 border-line-animate">
         <div style={{ animation: `fade-up 0.3s var(--ease-out-expo) both` }}>
           <h1 className="font-display text-2xl font-semibold tracking-tight text-black leading-tight">
@@ -46,7 +46,7 @@ export default function Uses() {
           </div>
 
           <p className="text-[10px] text-black/30 text-center mt-6">
-            Always evolving � this list will grow as I discover better tools.
+            Always evolving ï¿½ this list will grow as I discover better tools.
           </p>
         </div>
       </div>

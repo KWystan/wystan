@@ -1,13 +1,13 @@
-import Hero from '../components/Hero';
+﻿import Hero from '../components/Hero';
 import Contributions from '../components/Contributions';
 import { projects } from '../data/portfolioData';
 
 export default function Home() {
   return (
-    <div className="max-w-5xl mx-auto px-6 py-8 lg:py-10">
+    <div>
       <Hero />
 
-      {/* � Featured Projects ������ */}
+      {/* ï¿½ Featured Projects ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */}
       <section className="mt-12 border-t border-black/6 border-line-animate">
         <div className="border-l border-black/7 border-line-animate pt-8 px-6">
           <div className="flex items-center justify-between mb-4">
@@ -67,7 +67,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* � GitHub Activity ������ */}
+      {/* ï¿½ GitHub Activity ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */}
       <Contributions />
     </div>
   );

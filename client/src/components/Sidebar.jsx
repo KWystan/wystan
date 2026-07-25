@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+﻿import { Link, useLocation } from 'react-router-dom';
 import { sidebarLinks } from '../data/portfolioData';
 import Noise from './Noise';
 
@@ -25,28 +25,21 @@ export default function Sidebar({ mobileOpen, onClose }) {
 
   return (
     <>
-      {/* � Desktop sidebar ������ */}
+      {/* Desktop sidebar */}
       <aside className="hidden lg:flex w-[244px] shrink-0 flex-col bg-white self-start sticky top-0 h-screen z-40">
-        {/* Noise overlay */}
         <div className="absolute inset-0 pointer-events-none opacity-40">
           <Noise patternAlpha={10} />
         </div>
 
         <div className="relative z-10 flex flex-col h-full">
-          {/* � Brand ������ */}
+          {/* Brand */}
           <div className="px-6 pt-8 pb-6">
             <Link to="/" className="inline-flex items-center gap-2.5 group" onClick={onClose}>
-              <div className="w-8 h-8 rounded-lg border border-black/18 flex items-center justify-center text-black/65 font-bold text-xs transition-all duration-150 group-hover:border-black/35">
-                KC
-              </div>
-              <div className="flex flex-col leading-tight">
-                <span className="text-sm font-semibold text-black">Carlsto</span>
-                <span className="text-[10px] text-black/40">KWystan</span>
-              </div>
+              <span className="font-display text-lg font-bold text-black tracking-tight">Karl Wystan</span>
             </Link>
           </div>
 
-          {/* � Navigation ������ */}
+          {/* Navigation */}
           <nav className="flex-1 px-3">
             <ul className="space-y-0.5">
               {sidebarLinks.map((link) => {
@@ -71,7 +64,7 @@ export default function Sidebar({ mobileOpen, onClose }) {
             </ul>
           </nav>
 
-          {/* � Social links ������ */}
+          {/* Social links */}
           <div className="px-6 py-4 border-t border-black/6">
             <div className="flex items-center gap-1.5">
               <a
@@ -109,7 +102,7 @@ export default function Sidebar({ mobileOpen, onClose }) {
         </div>
       </aside>
 
-      {/* � Mobile overlay ������ */}
+      {/* Mobile overlay */}
       {mobileOpen && (
         <div
           className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm lg:hidden"
@@ -118,7 +111,7 @@ export default function Sidebar({ mobileOpen, onClose }) {
         />
       )}
 
-      {/* � Mobile drawer ������ */}
+      {/* Mobile drawer */}
       <aside
         className={`lg:hidden fixed top-0 left-0 h-full w-[280px] bg-white border-r border-black/8 z-50 transition-transform duration-300 ease-out-expo ${
           mobileOpen ? 'translate-x-0' : '-translate-x-full'
@@ -126,26 +119,19 @@ export default function Sidebar({ mobileOpen, onClose }) {
         aria-label="Navigation menu"
         aria-hidden={!mobileOpen}
       >
-        {/* Noise overlay */}
         <div className="absolute inset-0 pointer-events-none opacity-40">
           <Noise patternAlpha={10} />
         </div>
 
         <div className="relative z-10 flex flex-col h-full">
-          {/* � Brand ������ */}
+          {/* Brand */}
           <div className="px-6 pt-8 pb-6">
             <Link to="/" className="inline-flex items-center gap-2.5 group" onClick={onClose}>
-              <div className="w-8 h-8 rounded-lg border border-black/18 flex items-center justify-center text-black/65 font-bold text-xs transition-all duration-150 group-hover:border-black/35">
-                KC
-              </div>
-              <div className="flex flex-col leading-tight">
-                <span className="text-sm font-semibold text-black">Carlsto</span>
-                <span className="text-[10px] text-black/40">KWystan</span>
-              </div>
+              <span className="font-display text-lg font-bold text-black tracking-tight">Karl Wystan</span>
             </Link>
           </div>
 
-          {/* � Navigation ������ */}
+          {/* Navigation */}
           <nav className="flex-1 px-3">
             <ul className="space-y-0.5">
               {sidebarLinks.map((link) => {
@@ -170,7 +156,7 @@ export default function Sidebar({ mobileOpen, onClose }) {
             </ul>
           </nav>
 
-          {/* � Social links ������ */}
+          {/* Social links */}
           <div className="px-6 py-4 border-t border-black/6">
             <div className="flex items-center gap-1.5">
               <a
@@ -210,4 +196,3 @@ export default function Sidebar({ mobileOpen, onClose }) {
     </>
   );
 }
-

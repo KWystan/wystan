@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import useScrollReveal from '../hooks/useScrollReveal';
 
 const MAX_MESSAGE_LENGTH = 500;
@@ -69,7 +69,7 @@ export default function Guestbook() {
   };
 
   return (
-    <section className="py-8 lg:py-10">
+    <section className="py-8 md:py-10 border-t border-black/6 border-line-animate">
       <div className="max-w-5xl mx-auto px-6 border-l border-black/7 border-line-animate">
         <div style={{ animation: `fade-up 0.3s var(--ease-out-expo) both` }}>
           <h1 className="font-display text-2xl font-semibold tracking-tight text-black leading-tight">
