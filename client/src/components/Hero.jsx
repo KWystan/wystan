@@ -1,4 +1,5 @@
-﻿import { hero, projects, certifications, stack, experience } from '../data/portfolioData';
+﻿import { Icon } from '@iconify/react';
+import { hero, projects, certifications, stack, experience } from '../data/portfolioData';
 import { useTypewriter } from '../hooks/useTypewriter';
 import profilePic from '../assets/profile_picture.jpg';
 
@@ -99,17 +100,17 @@ export default function Hero() {
               href={`mailto:${hero.email}`}
               className="flex items-center gap-1.5 text-[11px] text-black/50 hover:text-black/80 transition-colors duration-150 active:scale-[0.97]"
             >
-              <span className="material-symbols-outlined text-[14px] text-black/45">mail</span>
+              <Icon icon="tabler:mail" className="text-[14px] text-black/45" />
               {hero.email}
             </a>
             <span className="w-px h-4 bg-black/8 hidden sm:block" />
             <span className="flex items-center gap-1.5 text-[11px] text-black/50">
-              <span className="material-symbols-outlined text-[14px] text-black/45">language</span>
+              <Icon icon="tabler:world" className="text-[14px] text-black/45" />
               {hero.website}
             </span>
             <span className="w-px h-4 bg-black/8 hidden sm:block" />
             <span className="flex items-center gap-1.5 text-[11px] text-black/50">
-              <span className="material-symbols-outlined text-[14px] text-black/45">location_on</span>
+              <Icon icon="tabler:map-pin" className="text-[14px] text-black/45" />
               {hero.location}
             </span>
           </div>

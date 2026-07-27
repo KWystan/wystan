@@ -230,15 +230,15 @@ export const contact = {
 
 /* ? Sidebar / Nav (route-based) ???????????? */
 export const sidebarLinks = [
-  { label: 'Home',         href: '/',            icon: 'home' },
-  { label: 'About',        href: '/about',       icon: 'person' },
-  { label: 'Projects',     href: '/projects',    icon: 'code' },
-  { label: 'Achievements', href: '/achievements', icon: 'trophy' },
-  { label: 'Guestbook',    href: '/guestbook',   icon: 'forum' },
-  { label: 'Uses',         href: '/uses',        icon: 'settings' },
-  { label: 'Contact',      href: '/contact',     icon: 'mail' },
-  { label: 'Links',        href: '/links',       icon: 'link' },
-  { label: 'Chat',         href: '/chat',        icon: 'smart_toy' },
+  { label: 'Home',         href: '/',            icon: 'tabler:home' },
+  { label: 'About',        href: '/about',       icon: 'tabler:user' },
+  { label: 'Projects',     href: '/projects',    icon: 'tabler:code' },
+  { label: 'Achievements', href: '/achievements', icon: 'tabler:trophy' },
+  { label: 'Guestbook',    href: '/guestbook',   icon: 'tabler:messages' },
+  { label: 'Uses',         href: '/uses',        icon: 'tabler:settings' },
+  { label: 'Contact',      href: '/contact',     icon: 'tabler:mail' },
+  { label: 'Links',        href: '/links',       icon: 'tabler:link' },
+  { label: 'Chat',         href: '/chat',        icon: 'tabler:robot' },
 ];
 
 /* ? Uses (gear / tools) ???????????? */

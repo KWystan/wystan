@@ -35,16 +35,16 @@ A plain monorepo (no workspace manager) with two independent Node.js projects:
 
 - **`client/`** — React 19 + Vite 8 (ESM modules — `import`/`export`). Uses `@vitejs/plugin-react` + `@tailwindcss/vite` plugin (no tailwind.config.js — Tailwind v4). Vite dev server runs on port **3000** and proxies `/api/*` to `http://localhost:5010`. Dependencies include `react-router-dom` (v7), `react-icons`, `styled-components`, `react-github-calendar`, `@fontsource-variable/geist`, and `@fontsource-variable/geist-mono`.
 
-- **`server/`** — Express.js 4 (CommonJS — `require`/`module.exports`). Listens on port **5010** (overridden from default 5000 via `server/.env`). Uses `cors`, `dotenv`, and `express`. Serves API under `/api/*`. Two JSON data files: `server/data/guestbook.json` and `server/messages.json` (contact form). The system prompt for the chat widget is loaded from `server/system-prompt.txt` at startup.
+- **`server/`** — Express.js 4 (CommonJS — `require`/`module.exports`). Listens on port **5010** (overridden from default 5000 via `server/.env`). Uses `cors`, `dotenv`, and `express`. Serves API under `/api/*`. Two JSON data files: `server/data/guestbook.json` and `server/messages.json` (contact form). The system prompt for the chat widget is loaded from `server/system-prompt.txt` at startup. Environment variable template at `server/.env.example`.
 
-- **`api/index.js`** — Vercel serverless entry point. Re-exports `server/index.js` (`require('../server/index')`). The `vercel.json` config routes `/api/(.*)` here, rewrites all other paths to the SPA, and includes `server/system-prompt.txt` via `includeFiles`.
+- **`api/index.js`** — Vercel serverless entry point. Re-exports `server/index.js` (`require('../server/index')`). The `vercel.json` config routes `/api/(.*)` here, rewrites all other paths to the SPA, and includes `server/system-prompt.txt` via `includeFiles`. The server's `module.exports = app` plus conditional `if (require.main === module) { app.listen(...) }` pattern makes it work for both local dev and Vercel serverless.
 
 ### API Endpoints
 
 | Method | Route              | Description                                      |
 |--------|--------------------|--------------------------------------------------|
 | GET    | `/api/health`      | Health check (`{ status: "ok" }`)                |
-| POST   | `/api/chat`        | AI chat widget — NVIDIA NIM (Llama 4 Maverick, non-streaming, 512 max tokens, last 12 messages) |
+| POST   | `/api/chat`        | AI chat widget — NVIDIA NIM (meta/llama-3.1-8b-instruct, non-streaming, 512 max tokens, last 12 messages) |
 | POST   | `/api/chat-full`   | Full chat page — OpenCode Zen (MiMo-V2.5, streaming via SSE, 2048 max tokens, last 20 messages, model selection) |
 | GET    | `/api/guestbook`   | List guestbook entries                           |
 | POST   | `/api/guestbook`   | Add guestbook entry (name: 60 chars optional, message: 500 chars required) |
@@ -56,7 +56,7 @@ Set in `server/.env` (see `server/.env.example`):
 
 | Variable            | Required | Purpose                              |
 |---------------------|----------|--------------------------------------|
-| `NVIDIA_API_KEY`    | For chat | NVIDIA NIM (Llama 4 Maverick) → `/api/chat` widget |
+| `NVIDIA_API_KEY`    | For chat | NVIDIA NIM (Llama 3.1 8B) → `/api/chat` widget |
 | `OPENCODE_API_KEY`  | Optional | OpenCode Zen (MiMo-V2.5) → `/api/chat-full` page |
 | `OPENCODE_BASE_URL` | No       | Override OpenCode base URL (default `https://opencode.ai/zen/v1`) |
 | `PORT`              | No       | Server port (default 5000, set to 5010 in dev `.env`) |
@@ -69,6 +69,7 @@ Tailwind CSS v4 via `@tailwindcss/vite` plugin — no `tailwind.config.js`. Them
 - Fonts: `--font-sans` Geist, `--font-mono` Geist Mono, `--font-serif` Source Serif 4, `--font-display` Geist Pixel Square (custom woff2 in `client/src/fonts/`)
 - Entrance keyframes: `fade-up` (translateY(10px)), `scale-in` (scale(0.95)), `float`, `blink`
 - Paper texture via CSS: `body::before` (coarse grain, SVG noise via feTurbulence) and `body::after` (fine grain) with `mix-blend-mode: multiply`
+- Grid-line border animation: `grid-line-v` (vertical border), `border-line-animate` (horizontal border drift)
 
 Icons use [Material Symbols](https://fonts.google.com/icons) (class `material-symbols-outlined`, weight `280` via `font-variation-settings`).
 
@@ -92,16 +93,17 @@ Icons use [Material Symbols](https://fonts.google.com/icons) (class `material-sy
 
 - **Design motion rules** (Emil Kowalski): Only animate `transform` and `opacity`, never layout/paint. Never animate from `scale(0)` — use `scale(0.95)` + `opacity: 0`. UI animations under 300ms. Button press `scale(0.97)` / floating buttons `scale(0.92)`. `prefers-reduced-motion` trims all movement. Entrance is deliberate (slower), exit/release is snappy.
 
+- **Dual-use server pattern**: `server/index.js` exports the Express app via `module.exports = app` AND conditionally calls `app.listen()` when run directly (`if (require.main === module)`). This allows Vercel serverless (`api/index.js`) to import the app without also starting the listener.
+
 ## Component Tree
 
 ```
 App (BrowserRouter, loading gate)
-└── LoadingScreen (2.5s animated SVG)
+└── LoadingScreen (2.5s animated SVG via styled-components)
     └── Routes
         ├── Route element={<Layout />}
         │   ├── Sidebar (fixed lg, off-canvas mobile drawer with Noise overlay + grid-line border)
         │   ├── <Outlet /> → Home, About, Projects, Achievements, Guestbook, Uses, Contact, Links, NotFound
-        │   ├── Footer
         │   └── ChatWidget (floating bubble bottom-right)
         └── Route path="chat" → ChatPage (standalone, no sidebar)
 ```
@@ -122,6 +124,7 @@ All static content lives in **`client/src/data/portfolioData.js`** — single so
 ## Vercel Deployment
 
 - **`vercel.json`**: build from `client/`, output `client/dist`, install both `client/` and `server/`. SPA rewrites catch-all for client-side routing. The serverless function at `api/index.js` has 256MB memory, 30s max duration, and includes `server/system-prompt.txt`.
+- **`api/index.js`**: Simply `const app = require('../server/index'); module.exports = app;`
 - **Required env vars** in Vercel dashboard: `NVIDIA_API_KEY`, `OPENCODE_API_KEY`.
 
 ## Adding New Routes

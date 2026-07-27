@@ -1,4 +1,5 @@
 ﻿import { Link, useLocation } from 'react-router-dom';
+import { Icon } from '@iconify/react';
 import { sidebarLinks } from '../data/portfolioData';
 import Noise from './Noise';
 
@@ -55,7 +56,7 @@ export default function Sidebar({ mobileOpen, onClose }) {
                           : 'text-black/65 hover-gate:text-black hover-gate:bg-black/[0.02]'
                       }`}
                     >
-                      <span className="material-symbols-outlined text-[18px]">{link.icon}</span>
+                      <Icon icon={link.icon} className="text-[18px]" />
                       {link.label}
                     </Link>
                   </li>
@@ -147,7 +148,7 @@ export default function Sidebar({ mobileOpen, onClose }) {
                           : 'text-black/65 hover-gate:text-black hover-gate:bg-black/[0.02]'
                       }`}
                     >
-                      <span className="material-symbols-outlined text-[18px]">{link.icon}</span>
+                      <Icon icon={link.icon} className="text-[18px]" />
                       {link.label}
                     </Link>
                   </li>
